@@ -1,0 +1,188 @@
+% ---------------------------------------------------------------------------------------------
+%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
+% \documentclass[10pt,a4paper,normalphoto]{altacv}
+% compile with LuaLaTeX on Linux
+% ---------------------------------------------------------------------------------------------
+\documentclass[10pt,a4paper,ragged2e,withhyper,academicons]{altacv}
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
+
+\input{preamble/general}
+\setmainfont{Lato}
+
+\columnratio{0.6} % Set the left/right column width ratio to 6:4.
+
+\addbibresource{cv.bib}  % publications
+
+% ------------- PERSONAL INFORMATION ----------------------------------------------------------
+\name{Michael Reichmann}
+\tagline{PhD Particle Physics}
+\photoR{2.5cm}{micha}
+% \photoL{2cm}{micha}
+\personalinfo{%
+% add your own with \printinfo{symbol}{detail}[optional hyperlink prefix]
+  \email{micha.reichmann@gmail.com}
+  \phone{+491781988015}
+  \mailaddress{Brzeska 23/17}
+  \location{50-430 Wroc\l aw}
+%   \homepage{marissamayr.tumblr.com}
+%   \twitter{@marissamayer}
+  \linkedin{michareichmann}
+  \github{michareichmann} 
+  \orcid{0000-0002-6220-5496}
+  % \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+  % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+  % \gitlab{your_id}
+}
+
+\begin{document}
+
+\makecvheader
+
+\begin{paracol}{2} % breaks across pages if things get too long.
+
+\cvsection{Experience}
+
+\cvevent{Researcher}{Millennium Research Group}{February 2011 -- March 2011}{Toronto, CA}
+\begin{itemize}
+	\item conducted a market survey on MRI- \& ultrasonic devices
+	\item saved and handled large data with Excel 
+\end{itemize}
+
+\divider
+
+\cvevent{Vice President of Location \& Services}{Google}{Oct 2010 -- July 2012}{Palo Alto, CA}
+\begin{itemize}
+\item Position Google Maps as the world leader in mobile apps and navigation
+\item Oversaw 1000+ engineers and product managers working on Google Maps, Google Places and Google Earth
+\end{itemize}
+
+\divider
+
+\cvevent{Vice President of Search Products \& UX}{Google}{2005 --  2010}{Palo Alto, CA}
+
+\divider
+
+\cvevent{Product Manager \& UI Lead}{Google}{Oct 2001 -- July 2005}{Palo Alto, CA}
+
+\begin{itemize}
+\item Appointed by the founder Larry Page in 2001 to lead the Product Management and User Interaction teams
+\item Optimized Google's homepage and A/B tested every minor detail to increase usability (incl.~spacing between words, color schemes and pixel-by-pixel element alignment)
+\end{itemize}
+
+% \divider
+
+% \cvevent{Product Engineer}{Google}{23 June 1999 -- 2001}{Palo Alto, CA}
+
+% \begin{itemize}
+% \item Joined the company as employe \#20 and female employee \#1
+% \item Developed targeted advertisement in order to use user's search queries and show them related ads
+% \end{itemize}
+
+\cvsection{A Day of My Life}
+
+% Adapted from @Jake's answer from http://tex.stackexchange.com/a/82729/226
+% \wheelchart{outer radius}{inner radius}{
+% comma-separated list of value/text width/color/detail}
+% Some ad-hoc tweaking to adjust the labels so that they don't overlap
+\hspace*{-1em}  %% quick hack to move the wheelchart a bit left
+\wheelchart{1.5cm}{0.5cm}{%
+  10/13em/accent!30/Sleeping \& dreaming about work,
+  25/9em/accent!60/Public resolving issues with Yahoo!\ investors,
+  5/11em/accent!10/\footnotesize\\[1ex]New York \& San Francisco Ballet Jawbone board member,
+  20/11em/accent!40/Spending time with family,
+  5/8em/accent!20/\footnotesize Business development for Yahoo!\ after the Verizon acquisition,
+  30/9em/accent/Showing Yahoo!\ \mbox{employees} that their work has meaning,
+  5/8em/accent!20/Baking cupcakes
+}
+
+% use ONLY \newpage if you want to force a page break for
+% ONLY the currentc column
+\newpage
+
+\cvsection{Publications}
+
+\nocite{*}
+
+\printbibliography[heading=pubtype,title={\printinfo{\faBook}{Books}},type=book]
+
+\divider
+
+\printbibliography[heading=pubtype,title={\printinfo{\faFile*[regular]}{Journal Articles}}, type=article]
+
+\divider
+
+\printbibliography[heading=pubtype,title={\printinfo{\faUsers}{Conference Proceedings}},type=inproceedings]
+
+%% Switch to the right column. This will now automatically move to the second
+%% page if the content is too long.
+\switchcolumn
+
+\cvsection{Life Philosophy}
+\begin{quote}
+``If you don't have any shadows, you're not standing in the light.''
+\end{quote}
+
+\cvsection{Most Proud of}
+
+\cvachievement{\faTrophy}{Courage I had}{to take a sinking ship and try to make it float}
+
+\divider
+
+\cvachievement{\faHeartbeat}{Persistence \& Loyalty}{I showed despite the hard moments and my willingness to stay with Yahoo after the acquisition}
+
+\divider
+
+\cvachievement{\faChartLine}{Google's Growth}{from a hundred thousand searches per day to over a billion}
+
+\divider
+
+\cvachievement{\faFemale}{Inspiring women in tech}{Youngest CEO on Fortune's list of 50 most powerful women}
+
+\cvsection{Strengths}
+
+\cvtag{Hard-working (18/24)}
+\cvtag{Persuasive}\\
+\cvtag{Motivator \& Leader}
+
+\divider\smallskip
+
+\cvtag{UX}
+\cvtag{Mobile Devices \& Applications}
+\cvtag{Product Management \& Marketing}
+
+\cvsection{Languages}
+
+\cvskill{English}{5}
+% \divider
+
+\cvskill{Spanish}{4}
+% \divider
+
+\cvskill{German}{3}
+
+
+\cvsection{Education}
+
+\cvevent{M.S.\ in Computer Science}{Stanford University}{Sept 1997 -- June 1999}{}
+
+\divider
+
+\cvevent{B.S.\ in Symbolic Systems}{Stanford University}{Sept 1993 -- June 1997}{}
+
+\newpage
+
+\cvsection{Referees}
+
+% \cvref{name}{email}{mailing address}
+\cvref{Prof.\ Alpha Beta}{Institute}{a.beta@university.edu}
+{Address Line 1\\Address line 2}
+
+\divider
+
+\cvref{Prof.\ Gamma Delta}{Institute}{g.delta@university.edu}
+{Address Line 1\\Address line 2}
+
+\end{paracol}
+
+\end{document}
+
