@@ -3,23 +3,31 @@
 % \documentclass[10pt,a4paper,normalphoto]{altacv}
 % compile with LuaLaTeX on Linux
 % ---------------------------------------------------------------------------------------------
-\documentclass[10pt,a4paper,ragged2e,withhyper,academicons]{altacv}
-\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
+%! region PREAMBLE
+\documentclass[10pt, a4paper, ragged2e, withhyper, academicons]{altacv}
+\geometry{left=1.25cm, right=1.25cm, top=1.5cm, bottom=1.5cm, columnsep=1.2cm}
 
+\input{preamble/packages}
 \input{preamble/general}
+
 \setmainfont{Lato}
 
-\columnratio{0.6} % Set the left/right column width ratio to 6:4.
-
-\addbibresource{cv.bib}  % publications
-
-% ------------- PERSONAL INFORMATION ----------------------------------------------------------
+\rcol{.41}
+\columnratio{.41} % Set the left/right column width ratio
+%! endregion
+% ---------------------------------------------------------------------------------------------
+%! region PERSONAL INFO
 \name{Iuliia Mishchenko}
 \tagline{Trade \& E-communication Surveillance and Monitoring Specialist}
-\photoR{2.5cm}{iuliia}
-% \photoL{2cm}{micha}
-\personalinfo{%
-% add your own with \printinfo{symbol}{detail}[optional hyperlink prefix]
+\photoL{5cm}{iuliia}
+%
+\address{ul. Brzeska 23, 50--430 Wroc\l aw}
+\nationality{Ukranian}
+\permit{Niebieska Karta UE, since 2014 in Poland}
+\bday{30/04/1990}
+%
+\personalinfo{
+%  add your own with \printinfo{symbol}{detail}[optional hyperlink prefix]
   \email{iuliia.mishchenko@gmail.com}
   \phone{+48721837519}
   \mailaddress{Brzeska 23/17}
@@ -27,78 +35,34 @@
 %   \homepage{marissamayr.tumblr.com}
 %   \twitter{@marissamayer}
   \linkedin{iuliia-mishchenko-0223aa95}
-%   \github{michareichmann} 
-%   \orcid{0000-0002-6220-5496}
-  % \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
-  % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
-  % \gitlab{your_id}
 }
-
+%! endregion
+%
 \begin{document}
-
-\makecvheader
-
+%
+\tikz[remember picture,overlay] \node[inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{figures/bkg}};
+\leftcvheader
 \begin{paracol}{2} % breaks across pages if things get too long.
+%
+% --------------------------------
+%! region LEFT COLUMN
+\lifephilosophy{Always work towards your goals with the utmost dedication.}
 
-
-\input{experience}
-\input{dayinlife}
-
-\newpage  %use ONLY \newpage if you want to force a page break for, only for current column
-
-% \input{publications}
-
+\input{sections/skills}
+\input{sections/lang}
+\input{sections/edu}
+\input{sections/details}
+%! endregion
+% --------------------------------
 \switchcolumn % Switch to the right column.
-\vspace*{-3.2pt}
-
-% --------------------- PHILOSOPHY ------------------------------------------------------------
-\cvsection{Life Philosophy}
-\begin{quote}
-% ``Life isn't about just talking, it's about thinking too.''
-``Always work towards your goals with the utmost dedication.''
-\end{quote}
-
-\input{skills}
-
-% --------------------- LANGUAGES ------------------------------------------------------------
-\cvsection{Languages}
-\cvskill{Ukrainian}{5}
-\cvskill{Russian}{5}
-\cvskill{Polish}{4}
-\divider
-\cvskill{English}{5}
-\cvskill{German}{4}
-
-% --------------------- EDUCATION ------------------------------------------------------------
-\cvsection{Education}
-\cvevent{Master in Economics of Enterprise}{Oles Honchar Dnipro National University}{September 2007 -- June 2012}{}
-
-\divider
-
-\cvevent{CISI exam}{Introduction to Securities \& Investment}{May 2019}{}
-
-\divider
-
-\cvevent{Online Training Program}{Google Digital Marketing Course}{December 2016}{}
-
-\divider
-
-\cvevent{Online Training Program}{KPMG K-Foundation Training Program}{March 2014 -- June 2014}{}
-
-% \newpage
-
-% \cvsection{Referees}
-% 
-% \cvref{name}{email}{mailing address}
-% \cvref{Prof.\ Alpha Beta}{Institute}{a.beta@university.edu}
-% {Address Line 1\\Address line 2}
-% 
-% \divider
-% 
-% \cvref{Prof.\ Gamma Delta}{Institute}{g.delta@university.edu}
-% {Address Line 1\\Address line 2}
-
+% --------------------------------
+%! region RIGHT COLUMN
+\input{sections/profile}
+\input{sections/experience}
+\input{sections/dayinlife}
+%! endregion
+%
 \end{paracol}
-
+%
 \end{document}
 

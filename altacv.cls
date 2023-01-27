@@ -20,6 +20,8 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{altacv}[2020/05/17 AltaCV v1.3.2, yet another alternative class for a resume/curriculum vitae.]
 
+%! suppress = CommandAlreadyDefined
+\newcommand{\phone}{bla}
 %% v1.1: Optionally load academicons
 \newif\if@academicons
 \DeclareOption{academicons}{\@academiconstrue}
@@ -206,6 +208,7 @@
 \ExplSyntaxOff
 
 \newcommand{\name}[1]{\def\@name{#1}}
+\newcommand{\rcol}[1]{\def\@rcol{#1}}
 \newcommand{\tagline}[1]{\def\@tagline{#1}}
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
 \NewInfoField{email}{\faAt}[mailto:]
@@ -262,7 +265,7 @@
 \newcommand{\namefont}{\Huge\bfseries}
 \newcommand{\taglinefont}{\large\bfseries}
 \newcommand{\personalinfofont}{\footnotesize\bfseries}
-\newcommand{\cvsectionfont}{\LARGE\bfseries}
+\newcommand{\cvsectionfont}{\Large\bfseries}
 \newcommand{\cvsubsectionfont}{\large\bfseries}
 
 \newcommand{\makecvheader}{%
@@ -280,6 +283,20 @@
   \endgroup\medskip
 }
 
+\newcommand{\leftcvheader}{%
+  \begingroup
+    \begin{minipage}{\@rcol\linewidth}\hspace*{-1.25cm}\centering
+      \altacv@left@photos
+    \end{minipage}\hspace*{2em}
+    \begin{minipage}{\dimexpr\linewidth - \@rcol\linewidth}
+      \raggedright{\namefont\color{name}\MakeUppercase{\@name}\par}
+      {\taglinefont\color{tagline}\@tagline\par}
+      \vspace*{2em}
+      \raggedleft\personalinfofont\@personalinfo\par
+    \end{minipage}
+  \endgroup\medskip
+}
+
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
 
 \newcommand{\cvsection}[2][]{%
@@ -294,6 +311,8 @@
   {\color{subheading}\cvsubsectionfont{#1}\par}\medskip
 }
 
+\newcommand{\cvdata}[2]{\textcolor{emphasis}{\textbf{#1:}}\hfill\small#2\par}
+
 % v1.1.4: fixes inconsistent font size
 \newcommand{\cvevent}[4]{%
   {\large\color{emphasis}#1\par}
@@ -303,9 +322,18 @@
   \smallskip}
   \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar~#3}}}%
   \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker~#4}}}\par
-  \medskip\normalsize
+  \smallskip\normalsize
 }
-
+\NewDocumentEnvironment{cveventi}{m m m m O{2em}} {\cvevent{#1}{#2}{#3}{#4}\begin{itemize}[leftmargin=#5]} {\end{itemize}\vspace*{-2pt}}
+%
+\newcommand{\cveventshort}[4]{
+  {\large\color{emphasis}#1} @ {\normalsize\textbf{\color{accent}#2}}\par\smallskip
+  \small\makebox[0.5\linewidth][l]{\faCalendar~#3}
+  \small\makebox[0.5\linewidth][l]{\faMapMarker~#4}\par\smallskip\normalsize
+}
+%\NewDocumentEnvironment{test}{m m m m}{\ifdefempty\BODY{\begin{itemize}}{}}{\ifdefempty\BODY{\end{itemize}}{}}
+\NewDocumentEnvironment{cveventis}{m m m m O{2em}} {\cveventshort{#1}{#2}{#3}{#4}\begin{itemize}[leftmargin=#5]} {\end{itemize}\vspace*{-2pt}}
+%
 \newcommand{\cvachievement}[3]{%
   \begin{tabularx}{\linewidth}{@{}p{2em} @{\hspace{1ex}} >{\raggedright\arraybackslash}X@{}}
   \multirow{2}{*}{\Large\color{accent}#1} & \bfseries\textcolor{emphasis}{#2}\\
@@ -315,13 +343,21 @@
 }
 
 \newcommand{\cvtag}[1]{%
-  \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};
+%  \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};
+  \tikz[baseline]\node[anchor=base,draw=body!30,fill=white,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};
+}
+\newcommand{\cvkey}[2]{\cvtag{#1:}\hfill#2\par}
+
+\newcommand{\cvskill}[3][]{%
+\textcolor{emphasis}{\textbf{#2}}\hfill\textbf{#1}
+\foreach \x in {1,...,5}{%
+  \space{\ifnumgreater{\x}{#3}{\color{body!30}}{\color{accent}}\ratingmarker}}\par%
 }
 
-\newcommand{\cvskill}[2]{%
-\textcolor{emphasis}{\textbf{#1}}\hfill
-\foreach \x in {1,...,5}{%
-  \space{\ifnumgreater{\x}{#2}{\color{body!30}}{\color{accent}}\ratingmarker}}\par%
+\newcommand{\lifephilosophy}[2][]{
+  \cvsection{Life Philosophy}
+  \begin{quote}``#2''\end{quote}
+  \ifx&#1&\else\hfill\small - #1\fi
 }
 
 % Adapted from @Jake's answer at http://tex.stackexchange.com/a/82729/226
