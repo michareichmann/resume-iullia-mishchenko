@@ -18,10 +18,10 @@
 % ---------------------------------------------------------------------------------------------
 %! region PERSONAL INFO
 \name{Iuliia Mishchenko}
-\tagline{Specialist in Trade and E-communication Surveillance and Monitoring}
+\tagline{Senior Specialist in Compliance Surveillance}
 \photoL{5cm}{iuliia}
 %
-\address{ul. Brzeska 23, 50--430 Wroc\l aw}
+\address{al. Lipowa 22, 53--124 Wroc\l aw}
 \nationality{Ukranian}
 \permit{Niebieska Karta UE}
 %\permit{Niebieska Karta UE, since 2014 in Poland}
@@ -31,10 +31,8 @@
 %  add your own with \printinfo{symbol}{detail}[optional hyperlink prefix]
   \email{iuliia.mishchenko@gmail.com}
   \phone{+48721837519}
-  \mailaddress{Brzeska 23/17}
-  \location{50-430 Wroc\l aw}
-%   \homepage{marissamayr.tumblr.com}
-%   \twitter{@marissamayer}
+  \mailaddress{Lipowa 22/9}
+  \location{53-124 Wroc\l aw}
   \linkedin{iuliia-mishchenko-0223aa95}
 }
 %! endregion
@@ -61,8 +59,13 @@
 % --------------------------------
 %! region RIGHT COLUMN
 \input{sections/profile}
-\input{sections/experience}
+\input{sections/exp}
 \input{sections/dayinlife}
+\input{sections/disclaimer}
+% --------------------------------
+\newpage
+\tikz[remember picture,overlay] \node[inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{figures/bkg-page}};
+\input{sections/exp1}
 %! endregion
 %
 \end{paracol}
